@@ -1,0 +1,18 @@
+@{
+  Layout = "_Layout";
+}
+
+@model BlockbusterResurrected.Models.Game
+
+<h2>Terminate Game from Blockbuster Existence</h2>
+<hr>
+
+<p>Remove @Model.GameTitle?</p>
+
+@using (@Html.BeginForm())
+{
+  <input class="btn btn-danger" type="submit" value="Terminate">
+}
+<hr>
+
+@Html.ActionLink("Back to games", "Index")

@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model BlockbusterResurrected.Models.Game
+
+<h4>Add a new game</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.Label("Game Title");
+    @Html.TextBoxFor(model => model.GameTitle)
+
+    @Html.Label("Select console")
+    @Html.DropDownList("ConsoleId")
+
+    <input type="submit" value="Add new game" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Show all games", "Index")</p>

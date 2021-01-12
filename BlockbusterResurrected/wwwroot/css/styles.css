@@ -1,0 +1,19 @@
+body {
+  background: blue;
+  background-size: cover;
+  color: rgb(236, 236, 20);
+}
+
+body::after {
+  content: "";
+  background: url("../img/sp_bb.jfif") no-repeat fixed;
+  background-size: cover;
+  opacity: .5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -1;   
+}
+
