@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@model BlockbusterResurrected.Models.Game
+
+<h2>Add a Console</h2>
+<hr>
+
+<h4>Add a console to this game: @Html.DisplayFor(model => model.GameTitle)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.GameId)
+
+    @Html.Label("Select console")
+    @Html.DropDownList("GConsoleId")
+
+    <input type="submit" value="Save" />
+}
+<hr>
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

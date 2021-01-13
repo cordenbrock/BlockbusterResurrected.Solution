@@ -3,7 +3,7 @@
 }
 
 @using BlockbusterResurrected.Models;
-@model List<BlockbusterResurrected.Models.Console>;
+@model List<BlockbusterResurrected.Models.GConsole>;
 
 <h1>Consoles</h1>
 <hr>
@@ -13,9 +13,9 @@
   <p>No Consoles have been listed yet</p>
 }
 
-@foreach (Console console in Model)
+@foreach (GConsole console in Model)
 {
-  <p>@Html.ActionLink($"{console.ConsoleName}", "Details", new { id = console.ConsoleId })</p>
+  <p>@Html.ActionLink($"{console.GConsoleName}", "Details", new { id = console.GConsoleId })</p>
 }
 <hr>
 

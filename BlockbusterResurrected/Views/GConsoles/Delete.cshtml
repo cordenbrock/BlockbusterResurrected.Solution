@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
+@model BlockbusterResurrected.Models.GConsole;
+
+<h2>Are you sure you want to delete this console? (CAN NOT BE UNDONE!)</h2>
+
+@Html.DisplayNameFor(model => model.GConsoleName): @Html.DisplayFor(model => model.GConsoleName)
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Yes I'm sure, delete!">
+}
+
+<p>@Html.ActionLink("Back to list of consoles", "Index")</p>
+<p>@Html.ActionLink("Back to home", "Index", "Home")</p>

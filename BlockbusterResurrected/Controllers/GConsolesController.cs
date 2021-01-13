@@ -7,18 +7,18 @@ using BlockbusterResurrected.Models;
 
 namespace BlockbusterResurrected.Controllers
 {
-  public class ConsolesController : Controller
+  public class GConsolesController : Controller
   {
     private readonly BlockbusterResurrectedContext _db;
 
-    public ConsolesController(BlockbusterResurrectedContext db)
+    public GConsolesController(BlockbusterResurrectedContext db)
     {
       _db = db;
     }
 
     public ActionResult Index()
     {
-      return View(_db.Consoles.ToList());
+      return View(_db.GConsoles.ToList());
     }
 
     public ActionResult Create()
@@ -27,33 +27,33 @@ namespace BlockbusterResurrected.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Console console)
+    public ActionResult Create(GConsole console)
     {
-      _db.Consoles.Add(console);
+      _db.GConsoles.Add(console);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
     {
-      var thisConsole = _db.Consoles
+      var thisConsole = _db.GConsoles
         .Include(console => console.Games)
         .ThenInclude(join => join.Game)
-        .FirstOrDefault(console => console.ConsoleId == id);
+        .FirstOrDefault(console => console.GConsoleId == id);
       return View(thisConsole);
     }
 
     public ActionResult Delete(int id)
     {
-      var thisConsole = _db.Consoles.FirstOrDefault(consoles => consoles.ConsoleId == id);
+      var thisConsole = _db.GConsoles.FirstOrDefault(consoles => consoles.GConsoleId == id);
       return View(thisConsole);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      var thisConsole = _db.Consoles.FirstOrDefault(consoles => consoles.ConsoleId == id);
-      _db.Consoles.Remove(thisConsole);
+      var thisConsole = _db.GConsoles.FirstOrDefault(consoles => consoles.GConsoleId == id);
+      _db.GConsoles.Remove(thisConsole);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -63,6 +63,20 @@ namespace BlockbusterResurrected.Controllers
     {
       var joinEntry = _db.ConsoleGame.FirstOrDefault(entry => entry.ConsoleGameId == joinId);
       _db.ConsoleGame.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Edit(int id)
+    {
+      var thisConsole = _db.GConsoles.FirstOrDefault(consoles => consoles.GConsoleId == id);
+      return View(thisConsole);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(GConsole gConsole)
+    {
+      _db.Entry(gConsole).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

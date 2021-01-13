@@ -1,0 +1,36 @@
+@{
+  Layout = "_Layout";
+}
+
+@model BlockbusterResurrected.Models.GConsole;
+
+<h1>Consoles</h1>
+<hr>
+<h3>@Html.DisplayFor(model => model.GConsoleName)</h3>
+<hr>
+<p>@Html.DisplayFor(model => model.Description)</p>
+<hr>
+
+@if(@Model.Games.Count == 0)
+{
+  <p>This console does not have any games available</p>
+} 
+else
+{
+  <h4>Games</h4>
+
+  @foreach(var join in Model.Games)
+  {
+    @using(Html.BeginForm("DeleteGame","GConsoles"))
+    {
+      <p>@Html.ActionLink($"{join.Game.GameTitle}", "Details", "Games", new { id = join.Game.GameId})
+      @Html.Hidden("joinId", @join.ConsoleGameId)
+      <input class="btn btn-danger" type="submit" value="x" /></p>
+    }
+  }
+  <hr>
+}
+<p>@Html.ActionLink("Edit console", "Edit", new { id = Model.GConsoleId })</p>
+<p>@Html.ActionLink("Delete console", "Delete", new { id = Model.GConsoleId })</p>
+<p>@Html.ActionLink("Back to list of consoles", "Index")</p>
+<p>@Html.ActionLink("Back to home", "Index", "Home")</p>

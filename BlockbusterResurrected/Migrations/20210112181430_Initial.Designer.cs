@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlockbusterResurrected.Migrations
 {
     [DbContext(typeof(BlockbusterResurrectedContext))]
-    [Migration("20210111194002_fixInitial")]
-    partial class fixInitial
+    [Migration("20210112181430_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,34 +18,34 @@ namespace BlockbusterResurrected.Migrations
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("BlockbusterResurrected.Models.Console", b =>
-                {
-                    b.Property<int>("ConsoleId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ConsoleName");
-
-                    b.HasKey("ConsoleId");
-
-                    b.ToTable("Consoles");
-                });
-
             modelBuilder.Entity("BlockbusterResurrected.Models.ConsoleGame", b =>
                 {
                     b.Property<int>("ConsoleGameId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ConsoleId");
+                    b.Property<int>("GConsoleId");
 
                     b.Property<int>("GameId");
 
                     b.HasKey("ConsoleGameId");
 
-                    b.HasIndex("ConsoleId");
+                    b.HasIndex("GConsoleId");
 
                     b.HasIndex("GameId");
 
                     b.ToTable("ConsoleGame");
+                });
+
+            modelBuilder.Entity("BlockbusterResurrected.Models.GConsole", b =>
+                {
+                    b.Property<int>("GConsoleId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("GConsoleName");
+
+                    b.HasKey("GConsoleId");
+
+                    b.ToTable("GConsoles");
                 });
 
             modelBuilder.Entity("BlockbusterResurrected.Models.Game", b =>
@@ -62,13 +62,13 @@ namespace BlockbusterResurrected.Migrations
 
             modelBuilder.Entity("BlockbusterResurrected.Models.ConsoleGame", b =>
                 {
-                    b.HasOne("BlockbusterResurrected.Models.Console", "Console")
+                    b.HasOne("BlockbusterResurrected.Models.GConsole", "GConsole")
                         .WithMany("Games")
-                        .HasForeignKey("ConsoleId")
+                        .HasForeignKey("GConsoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("BlockbusterResurrected.Models.Game", "Game")
-                        .WithMany("Consoles")
+                        .WithMany("GConsoles")
                         .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

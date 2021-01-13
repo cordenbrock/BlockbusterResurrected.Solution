@@ -2,14 +2,16 @@
 using BlockbusterResurrected.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BlockbusterResurrected.Migrations
 {
     [DbContext(typeof(BlockbusterResurrectedContext))]
-    partial class BlockbusterResurrectedContextModelSnapshot : ModelSnapshot
+    [Migration("20210112185053_addDescription")]
+    partial class addDescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

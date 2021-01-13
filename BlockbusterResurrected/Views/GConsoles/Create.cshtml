@@ -1,0 +1,20 @@
+@{
+  Layout = "_layout";
+}
+
+@model BlockbusterResurrected.Models.GConsole;
+
+<h4>Add new console</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.GConsoleName)
+  @Html.TextBoxFor(model => model.GConsoleName)
+
+  @Html.LabelFor(model => model.Description)
+  @Html.TextBoxFor(model => model.Description)
+  <input class="btn" type="submit" value="Add new console">
+}
+
+<p>@Html.ActionLink("Back to list of consoles", "Index")</p>
+<p>@Html.ActionLink("Back to home", "Index", "Home")</p>

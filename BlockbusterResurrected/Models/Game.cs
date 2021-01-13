@@ -6,11 +6,11 @@ namespace BlockbusterResurrected.Models
   {
     public Game()
     {
-      this.Consoles = new HashSet<ConsoleGame>();
+      this.GConsoles = new HashSet<ConsoleGame>();
     }
 
     public int GameId { get; set; }
     public string GameTitle { get; set; }
-    public virtual ICollection<ConsoleGame> Consoles { get; set; }
+    public virtual ICollection<ConsoleGame> GConsoles { get; set; }
   }
 }

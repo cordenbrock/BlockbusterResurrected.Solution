@@ -3,23 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BlockbusterResurrected.Migrations
 {
-    public partial class fixInitial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Consoles",
-                columns: table => new
-                {
-                    ConsoleId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ConsoleName = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Consoles", x => x.ConsoleId);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Games",
                 columns: table => new
@@ -34,22 +21,35 @@ namespace BlockbusterResurrected.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "GConsoles",
+                columns: table => new
+                {
+                    GConsoleId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    GConsoleName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GConsoles", x => x.GConsoleId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ConsoleGame",
                 columns: table => new
                 {
                     ConsoleGameId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ConsoleId = table.Column<int>(nullable: false),
+                    GConsoleId = table.Column<int>(nullable: false),
                     GameId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ConsoleGame", x => x.ConsoleGameId);
                     table.ForeignKey(
-                        name: "FK_ConsoleGame_Consoles_ConsoleId",
-                        column: x => x.ConsoleId,
-                        principalTable: "Consoles",
-                        principalColumn: "ConsoleId",
+                        name: "FK_ConsoleGame_GConsoles_GConsoleId",
+                        column: x => x.GConsoleId,
+                        principalTable: "GConsoles",
+                        principalColumn: "GConsoleId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ConsoleGame_Games_GameId",
@@ -60,9 +60,9 @@ namespace BlockbusterResurrected.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ConsoleGame_ConsoleId",
+                name: "IX_ConsoleGame_GConsoleId",
                 table: "ConsoleGame",
-                column: "ConsoleId");
+                column: "GConsoleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ConsoleGame_GameId",
@@ -76,7 +76,7 @@ namespace BlockbusterResurrected.Migrations
                 name: "ConsoleGame");
 
             migrationBuilder.DropTable(
-                name: "Consoles");
+                name: "GConsoles");
 
             migrationBuilder.DropTable(
                 name: "Games");

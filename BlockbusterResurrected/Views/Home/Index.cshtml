@@ -3,13 +3,25 @@
 }
 
 <h1 style="text-align:center">Blockbuster Resurrected</h1>
+<hr>
 
 <div style="text-align:center">
   <p>Some people say Blockbuster is past its prime, obsolete, antiquated, yada yada yada</p>
-  <p>Yet, we know the truth: an institution as divine as Blockbuster will never go under, like plastic serenely drifting through the oceans</p>
+  <p>Yet, we know the truth: an institution as divine as Blockbuster will never go under, like plastic serenely drifting atop the ocean waves</p>
   <p>That is why it our mission to revive the brick-and-mortar corpse of what some people are saying is America's true and only pride and joy</p>
   <p>Rent today... please??</p>
+  <hr>
+
+  <form asp-controller="Home" asp-action="Index">
+      <p>
+          <label>Search by Game Title or Console Name:</label>
+          <br>
+          <input type="text" name="SearchString" />
+          <input class="btn btn-primary" type="submit" value="Filter" />
+      </p>
+  </form>
+  <hr>
 
   <p>@Html.ActionLink("See all games", "Index", "Games")</p>
-  <p>@Html.ActionLink("See all consoles", "Index", "Consoles")</p>
+  <p>@Html.ActionLink("See all consoles", "Index", "GConsoles")</p>
 </div>

@@ -7,23 +7,27 @@
 <h2>Game Details</h2>
 <hr>
 
-@if (Model.Consoles.Count == 0)
-{
-  <p>No console info provided</p>
-}
-else
-{
-  @foreach(var join in Model.Consoles)
-  {
-    <p>Console(s): @join.Console.ConsoleName</p>
-  }
-}
 <p>Title: @Model.GameTitle</p>
 <p>Copies: --</p>
 <p>Availability: --</p>
 <p>[Rating, description, etc.]</p>
 <hr>
 
+@if (Model.GConsoles.Count == 0)
+{
+  <p>No console info provided</p>
+}
+else
+{
+  <p>Console(s): </p>
+  @foreach(var join in Model.GConsoles)
+  {
+    <p>@Html.ActionLink($"{join.GConsole.GConsoleName}", "Details", "GConsoles", new { id = join.GConsoleId })</p>
+  }
+}
+<hr>
+
+<p>@Html.ActionLink("Add console", "AddGConsole", new { id = Model.GameId })</p>
 <p>@Html.ActionLink("Terminate game", "Delete", new { id = Model.GameId })</p>
 <p>@Html.ActionLink("Edit game", "Edit", new { id = Model.GameId })</p>
 <p>@Html.ActionLink("Back to games", "Index")</p>

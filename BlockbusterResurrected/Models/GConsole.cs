@@ -2,15 +2,16 @@ using System.Collections.Generic;
 
 namespace BlockbusterResurrected.Models
 {
-  public class Console
+  public class GConsole
   {
-    public Console()
+    public GConsole()
     {
     this.Games = new HashSet<ConsoleGame>();
     }
 
-    public int ConsoleId { get; set; }
-    public string ConsoleName { get; set; }
+    public int GConsoleId { get; set; }
+    public string GConsoleName { get; set; }
+    public string Description {get; set; }
     public virtual ICollection<ConsoleGame> Games { get; set; }
   }
 }
